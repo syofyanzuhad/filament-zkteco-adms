@@ -2,21 +2,24 @@
 
 namespace Syofyanzuhad\FilamentZktecoAdms\Filament\Resources\DeviceResource\RelationManagers;
 
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Forms\Components\TextInput;
 use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Tables;
+use Filament\Schemas\Schema;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Actions\ViewAction;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class AttendanceLogsRelationManager extends RelationManager
 {
     protected static string $relationship = 'attendanceLogs';
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('pin')
+        return $schema
+            ->components([
+                TextInput::make('pin')
                     ->required()
                     ->maxLength(255),
             ]);
@@ -27,16 +30,16 @@ class AttendanceLogsRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('pin')
             ->columns([
-                Tables\Columns\TextColumn::make('pin')
+                TextColumn::make('pin')
                     ->label('User PIN')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('zktecoUser.name')
+                TextColumn::make('zktecoUser.name')
                     ->label('User Name')
                     ->placeholder('Unknown'),
-                Tables\Columns\TextColumn::make('punched_at')
+                TextColumn::make('punched_at')
                     ->dateTime()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('status')
+                TextColumn::make('status')
                     ->badge()
                     ->formatStateUsing(fn ($state) => match ($state) {
                         0 => 'Check In',
@@ -48,7 +51,7 @@ class AttendanceLogsRelationManager extends RelationManager
                         1 => 'danger',
                         default => 'gray',
                     }),
-                Tables\Columns\TextColumn::make('verify_type_label')
+                TextColumn::make('verify_type_label')
                     ->label('Verify Type'),
             ])
             ->defaultSort('punched_at', 'desc')
@@ -59,11 +62,11 @@ class AttendanceLogsRelationManager extends RelationManager
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
+                ViewAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }

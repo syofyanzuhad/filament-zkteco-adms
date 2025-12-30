@@ -3,8 +3,8 @@
 namespace Syofyanzuhad\FilamentZktecoAdms\Filament\Resources;
 
 use Filament\Forms;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Syofyanzuhad\FilamentZktecoAdms\Filament\Resources\DeviceCommandResource\Pages;
@@ -15,7 +15,7 @@ class DeviceCommandResource extends Resource
 {
     protected static ?string $model = DeviceCommand::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-command-line';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-command-line';
 
     protected static ?int $navigationSort = 4;
 
@@ -25,9 +25,9 @@ class DeviceCommandResource extends Resource
             ?? config('zkteco-adms.filament.navigation_group', 'ZKTeco ADMS');
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form->schema([
+        return $schema->components([
             Forms\Components\Section::make('Command Details')
                 ->schema([
                     Forms\Components\Select::make('device_id')

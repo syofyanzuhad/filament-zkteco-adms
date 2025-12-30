@@ -3,8 +3,8 @@
 namespace Syofyanzuhad\FilamentZktecoAdms\Filament\Resources;
 
 use Filament\Forms;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Syofyanzuhad\FilamentZktecoAdms\Filament\Resources\DeviceResource\Pages;
@@ -17,7 +17,7 @@ class DeviceResource extends Resource
 {
     protected static ?string $model = Device::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-cpu-chip';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-cpu-chip';
 
     protected static ?int $navigationSort = 1;
 
@@ -27,9 +27,9 @@ class DeviceResource extends Resource
             ?? config('zkteco-adms.filament.navigation_group', 'ZKTeco ADMS');
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form->schema([
+        return $schema->components([
             Forms\Components\Section::make('Device Information')
                 ->schema([
                     Forms\Components\TextInput::make('serial_number')

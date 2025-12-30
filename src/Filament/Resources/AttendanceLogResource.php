@@ -3,8 +3,8 @@
 namespace Syofyanzuhad\FilamentZktecoAdms\Filament\Resources;
 
 use Filament\Forms;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Syofyanzuhad\FilamentZktecoAdms\Filament\Resources\AttendanceLogResource\Pages;
@@ -15,7 +15,7 @@ class AttendanceLogResource extends Resource
 {
     protected static ?string $model = AttendanceLog::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-clock';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-clock';
 
     protected static ?int $navigationSort = 2;
 
@@ -25,9 +25,9 @@ class AttendanceLogResource extends Resource
             ?? config('zkteco-adms.filament.navigation_group', 'ZKTeco ADMS');
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form->schema([
+        return $schema->components([
             Forms\Components\Section::make('Attendance Details')
                 ->schema([
                     Forms\Components\Select::make('device_id')
