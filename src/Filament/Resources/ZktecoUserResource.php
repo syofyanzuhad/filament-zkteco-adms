@@ -10,6 +10,8 @@ use Filament\Tables\Table;
 use Syofyanzuhad\FilamentZktecoAdms\Filament\Resources\ZktecoUserResource\Pages;
 use Syofyanzuhad\FilamentZktecoAdms\Models\ZktecoUser;
 
+use Syofyanzuhad\FilamentZktecoAdms\FilamentZktecoAdmsPlugin;
+
 class ZktecoUserResource extends Resource
 {
     protected static ?string $model = ZktecoUser::class;
@@ -24,7 +26,8 @@ class ZktecoUserResource extends Resource
 
     public static function getNavigationGroup(): ?string
     {
-        return config('zkteco-adms.filament.navigation_group', 'ZKTeco ADMS');
+        return FilamentZktecoAdmsPlugin::get()->getNavigationGroup()
+            ?? config('zkteco-adms.filament.navigation_group', 'ZKTeco ADMS');
     }
 
     public static function form(Form $form): Form

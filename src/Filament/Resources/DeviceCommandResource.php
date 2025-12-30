@@ -10,6 +10,8 @@ use Filament\Tables\Table;
 use Syofyanzuhad\FilamentZktecoAdms\Filament\Resources\DeviceCommandResource\Pages;
 use Syofyanzuhad\FilamentZktecoAdms\Models\DeviceCommand;
 
+use Syofyanzuhad\FilamentZktecoAdms\FilamentZktecoAdmsPlugin;
+
 class DeviceCommandResource extends Resource
 {
     protected static ?string $model = DeviceCommand::class;
@@ -20,7 +22,8 @@ class DeviceCommandResource extends Resource
 
     public static function getNavigationGroup(): ?string
     {
-        return config('zkteco-adms.filament.navigation_group', 'ZKTeco ADMS');
+        return FilamentZktecoAdmsPlugin::get()->getNavigationGroup()
+            ?? config('zkteco-adms.filament.navigation_group', 'ZKTeco ADMS');
     }
 
     public static function form(Form $form): Form

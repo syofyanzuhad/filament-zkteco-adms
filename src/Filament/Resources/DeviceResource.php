@@ -12,6 +12,8 @@ use Syofyanzuhad\FilamentZktecoAdms\Filament\Resources\DeviceResource\RelationMa
 use Syofyanzuhad\FilamentZktecoAdms\Models\Device;
 use Syofyanzuhad\FilamentZktecoAdms\Services\DeviceCommandBuilder;
 
+use Syofyanzuhad\FilamentZktecoAdms\FilamentZktecoAdmsPlugin;
+
 class DeviceResource extends Resource
 {
     protected static ?string $model = Device::class;
@@ -22,7 +24,8 @@ class DeviceResource extends Resource
 
     public static function getNavigationGroup(): ?string
     {
-        return config('zkteco-adms.filament.navigation_group', 'ZKTeco ADMS');
+        return FilamentZktecoAdmsPlugin::get()->getNavigationGroup()
+            ?? config('zkteco-adms.filament.navigation_group', 'ZKTeco ADMS');
     }
 
     public static function form(Form $form): Form
