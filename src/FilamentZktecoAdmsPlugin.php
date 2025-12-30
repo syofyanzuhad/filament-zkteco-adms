@@ -4,9 +4,21 @@ namespace Syofyanzuhad\FilamentZktecoAdms;
 
 use Filament\Contracts\Plugin;
 use Filament\Panel;
+use Syofyanzuhad\FilamentZktecoAdms\Filament\Resources\AttendanceLogResource;
+use Syofyanzuhad\FilamentZktecoAdms\Filament\Resources\DeviceCommandResource;
+use Syofyanzuhad\FilamentZktecoAdms\Filament\Resources\DeviceResource;
+use Syofyanzuhad\FilamentZktecoAdms\Filament\Resources\ZktecoUserResource;
 
 class FilamentZktecoAdmsPlugin implements Plugin
 {
+    protected bool $hasDeviceResource = true;
+
+    protected bool $hasAttendanceLogResource = true;
+
+    protected bool $hasUserResource = true;
+
+    protected bool $hasCommandResource = true;
+
     public function getId(): string
     {
         return 'filament-zkteco-adms';
@@ -14,7 +26,25 @@ class FilamentZktecoAdmsPlugin implements Plugin
 
     public function register(Panel $panel): void
     {
-        //
+        $resources = [];
+
+        if ($this->hasDeviceResource) {
+            $resources[] = DeviceResource::class;
+        }
+
+        if ($this->hasAttendanceLogResource) {
+            $resources[] = AttendanceLogResource::class;
+        }
+
+        if ($this->hasUserResource) {
+            $resources[] = ZktecoUserResource::class;
+        }
+
+        if ($this->hasCommandResource) {
+            $resources[] = DeviceCommandResource::class;
+        }
+
+        $panel->resources($resources);
     }
 
     public function boot(Panel $panel): void
@@ -33,5 +63,33 @@ class FilamentZktecoAdmsPlugin implements Plugin
         $plugin = filament(app(static::class)->getId());
 
         return $plugin;
+    }
+
+    public function deviceResource(bool $condition = true): static
+    {
+        $this->hasDeviceResource = $condition;
+
+        return $this;
+    }
+
+    public function attendanceLogResource(bool $condition = true): static
+    {
+        $this->hasAttendanceLogResource = $condition;
+
+        return $this;
+    }
+
+    public function userResource(bool $condition = true): static
+    {
+        $this->hasUserResource = $condition;
+
+        return $this;
+    }
+
+    public function commandResource(bool $condition = true): static
+    {
+        $this->hasCommandResource = $condition;
+
+        return $this;
     }
 }

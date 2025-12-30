@@ -2,13 +2,13 @@
 
 namespace Syofyanzuhad\FilamentZktecoAdms;
 
-use Filament\Support\Assets\AlpineComponent;
 use Filament\Support\Assets\Asset;
 use Filament\Support\Assets\Css;
 use Filament\Support\Assets\Js;
 use Filament\Support\Facades\FilamentAsset;
 use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Route;
 use Livewire\Features\SupportTesting\Testable;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
@@ -87,6 +87,23 @@ class FilamentZktecoAdmsServiceProvider extends PackageServiceProvider
 
         // Testing
         Testable::mixin(new TestsFilamentZktecoAdms);
+
+        // Register ADMS routes
+        $this->registerAdmsRoutes();
+    }
+
+    protected function registerAdmsRoutes(): void
+    {
+        $routeConfig = config('zkteco-adms.routes', []);
+
+        Route::group([
+            'prefix' => $routeConfig['prefix'] ?? 'iclock',
+            'middleware' => $routeConfig['middleware'] ?? ['api'],
+            'domain' => $routeConfig['domain'] ?? null,
+            'as' => 'zkteco-adms.',
+        ], function () {
+            $this->loadRoutesFrom(__DIR__ . '/../routes/adms.php');
+        });
     }
 
     protected function getAssetPackageName(): ?string
@@ -146,7 +163,10 @@ class FilamentZktecoAdmsServiceProvider extends PackageServiceProvider
     protected function getMigrations(): array
     {
         return [
-            'create_filament-zkteco-adms_table',
+            '2024_01_01_000001_create_zkteco_devices_table',
+            '2024_01_01_000002_create_zkteco_attendance_logs_table',
+            '2024_01_01_000003_create_zkteco_users_table',
+            '2024_01_01_000004_create_zkteco_device_commands_table',
         ];
     }
 }
