@@ -4,9 +4,7 @@ use Illuminate\Support\Facades\Event;
 use Syofyanzuhad\FilamentZktecoAdms\Events\AttendanceReceived;
 use Syofyanzuhad\FilamentZktecoAdms\Events\DeviceConnected;
 use Syofyanzuhad\FilamentZktecoAdms\Events\UserSynced;
-use Syofyanzuhad\FilamentZktecoAdms\Models\AttendanceLog;
 use Syofyanzuhad\FilamentZktecoAdms\Models\Device;
-use Syofyanzuhad\FilamentZktecoAdms\Models\ZktecoUser;
 
 beforeEach(function () {
     Event::fake();
