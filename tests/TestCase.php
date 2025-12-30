@@ -52,9 +52,26 @@ class TestCase extends Orchestra
     {
         config()->set('database.default', 'testing');
 
-        /*
-        $migration = include __DIR__.'/../database/migrations/create_filament-zkteco-adms_table.php.stub';
-        $migration->up();
-        */
+        // Set app key for encryption
+        $app['config']->set('app.key', 'base64:' . base64_encode(random_bytes(32)));
+
+        // Load package config
+        $app['config']->set('zkteco-adms', require __DIR__ . '/../config/zkteco-adms.php');
+
+        // Use no middleware for testing
+        $app['config']->set('zkteco-adms.routes.middleware', []);
+
+        // Run all package migrations
+        $migrations = [
+            '2024_01_01_000001_create_zkteco_devices_table.php.stub',
+            '2024_01_01_000002_create_zkteco_attendance_logs_table.php.stub',
+            '2024_01_01_000003_create_zkteco_users_table.php.stub',
+            '2024_01_01_000004_create_zkteco_device_commands_table.php.stub',
+        ];
+
+        foreach ($migrations as $migration) {
+            $migrationClass = include __DIR__ . '/../database/migrations/' . $migration;
+            $migrationClass->up();
+        }
     }
 }
