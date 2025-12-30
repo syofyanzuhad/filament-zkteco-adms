@@ -41,7 +41,7 @@ class DeviceCommandResource extends Resource
                             'CHECK' => 'Check Connection',
                         ])
                         ->required()
-                        ->reactive(),
+                        ->live(),
                     Forms\Components\Textarea::make('command_content')
                         ->required()
                         ->rows(3),
@@ -55,7 +55,8 @@ class DeviceCommandResource extends Resource
                         ->default('pending')
                         ->disabled(),
                 ])
-                ->columns(2),
+                ->columns(2)
+                ->columnSpanFull(),
         ]);
     }
 

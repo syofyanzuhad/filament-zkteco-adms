@@ -48,7 +48,8 @@ class ZktecoUserResource extends Resource
                     Forms\Components\Toggle::make('is_enabled')
                         ->default(true),
                 ])
-                ->columns(2),
+                ->columns(2)
+                ->columnSpanFull(),
         ]);
     }
 

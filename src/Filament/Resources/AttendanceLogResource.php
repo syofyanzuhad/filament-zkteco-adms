@@ -52,7 +52,8 @@ class AttendanceLogResource extends Resource
                             15 => 'Face',
                         ]),
                 ])
-                ->columns(2),
+                ->columns(2)
+                ->columnSpanFull(),
         ]);
     }
 
