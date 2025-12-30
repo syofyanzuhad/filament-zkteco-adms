@@ -4,7 +4,22 @@ namespace Syofyanzuhad\FilamentZktecoAdms\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
 
+/**
+ * @property int $id
+ * @property string $pin
+ * @property string|null $name
+ * @property string|null $card_number
+ * @property int $privilege
+ * @property string|null $password
+ * @property string|null $group
+ * @property bool $is_enabled
+ * @property array|null $fingerprints
+ * @property array|null $face_templates
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ */
 class ZktecoUser extends Model
 {
     protected $guarded = [];

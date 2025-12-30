@@ -63,12 +63,10 @@ class ZktecoUserResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('card_number')
                     ->label('Card'),
-                Tables\Columns\BadgeColumn::make('privilege')
+                Tables\Columns\TextColumn::make('privilege')
+                    ->badge()
                     ->formatStateUsing(fn ($state) => $state === 14 ? 'Admin' : 'User')
-                    ->colors([
-                        'primary' => 14,
-                        'secondary' => 0,
-                    ]),
+                    ->color(fn ($state): string => $state === 14 ? 'primary' : 'gray'),
                 Tables\Columns\IconColumn::make('is_enabled')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('attendance_logs_count')

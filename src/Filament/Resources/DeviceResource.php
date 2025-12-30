@@ -66,12 +66,13 @@ class DeviceResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('ip_address')
                     ->label('IP Address'),
-                Tables\Columns\BadgeColumn::make('status')
-                    ->colors([
-                        'success' => 'online',
-                        'danger' => 'offline',
-                        'warning' => 'unknown',
-                    ]),
+                Tables\Columns\TextColumn::make('status')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'online' => 'success',
+                        'offline' => 'danger',
+                        default => 'warning',
+                    }),
                 Tables\Columns\TextColumn::make('last_activity_at')
                     ->label('Last Activity')
                     ->dateTime()

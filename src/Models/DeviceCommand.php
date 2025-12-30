@@ -4,7 +4,21 @@ namespace Syofyanzuhad\FilamentZktecoAdms\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Carbon;
 
+/**
+ * @property int $id
+ * @property int $device_id
+ * @property string $command_type
+ * @property string $command_content
+ * @property string $status
+ * @property Carbon|null $sent_at
+ * @property Carbon|null $acknowledged_at
+ * @property string|null $response
+ * @property int $retry_count
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ */
 class DeviceCommand extends Model
 {
     protected $guarded = [];

@@ -4,7 +4,22 @@ namespace Syofyanzuhad\FilamentZktecoAdms\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Carbon;
 
+/**
+ * @property int $id
+ * @property int $device_id
+ * @property string $pin
+ * @property Carbon $punched_at
+ * @property int $status
+ * @property int $verify_type
+ * @property int|null $work_code
+ * @property string|null $reserved_1
+ * @property string|null $reserved_2
+ * @property array|null $raw_data
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ */
 class AttendanceLog extends Model
 {
     protected $guarded = [];

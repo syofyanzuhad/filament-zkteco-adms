@@ -41,13 +41,15 @@ class CommandsRelationManager extends RelationManager
                     ->badge(),
                 Tables\Columns\TextColumn::make('command_content')
                     ->limit(30),
-                Tables\Columns\BadgeColumn::make('status')
-                    ->colors([
-                        'warning' => 'pending',
-                        'info' => 'sent',
-                        'success' => 'acknowledged',
-                        'danger' => 'failed',
-                    ]),
+                Tables\Columns\TextColumn::make('status')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'pending' => 'warning',
+                        'sent' => 'info',
+                        'acknowledged' => 'success',
+                        'failed' => 'danger',
+                        default => 'gray',
+                    }),
                 Tables\Columns\TextColumn::make('sent_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('acknowledged_at')

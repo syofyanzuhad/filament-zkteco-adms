@@ -4,7 +4,26 @@ namespace Syofyanzuhad\FilamentZktecoAdms\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
 
+/**
+ * @property int $id
+ * @property string $serial_number
+ * @property string|null $name
+ * @property string|null $ip_address
+ * @property string|null $model
+ * @property string|null $firmware_version
+ * @property string|null $push_version
+ * @property string|null $device_type
+ * @property string $status
+ * @property Carbon|null $last_activity_at
+ * @property Carbon|null $last_sync_at
+ * @property int $att_stamp
+ * @property int $op_stamp
+ * @property array|null $options
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ */
 class Device extends Model
 {
     protected $guarded = [];

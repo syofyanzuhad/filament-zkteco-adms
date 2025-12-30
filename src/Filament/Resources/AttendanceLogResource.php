@@ -71,7 +71,8 @@ class AttendanceLogResource extends Resource
                 Tables\Columns\TextColumn::make('punched_at')
                     ->dateTime()
                     ->sortable(),
-                Tables\Columns\BadgeColumn::make('status')
+                Tables\Columns\TextColumn::make('status')
+                    ->badge()
                     ->formatStateUsing(fn ($state) => match ($state) {
                         0 => 'Check In',
                         1 => 'Check Out',
@@ -81,11 +82,11 @@ class AttendanceLogResource extends Resource
                         5 => 'OT Out',
                         default => 'Unknown',
                     })
-                    ->colors([
-                        'success' => 0,
-                        'danger' => 1,
-                        'warning' => fn ($state) => in_array($state, [2, 3, 4, 5]),
-                    ]),
+                    ->color(fn ($state): string => match ($state) {
+                        0 => 'success',
+                        1 => 'danger',
+                        default => 'warning',
+                    }),
                 Tables\Columns\TextColumn::make('verify_type_label')
                     ->label('Verify Type'),
             ])
