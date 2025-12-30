@@ -9,10 +9,9 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Syofyanzuhad\FilamentZktecoAdms\Filament\Resources\DeviceResource\Pages;
 use Syofyanzuhad\FilamentZktecoAdms\Filament\Resources\DeviceResource\RelationManagers;
+use Syofyanzuhad\FilamentZktecoAdms\FilamentZktecoAdmsPlugin;
 use Syofyanzuhad\FilamentZktecoAdms\Models\Device;
 use Syofyanzuhad\FilamentZktecoAdms\Services\DeviceCommandBuilder;
-
-use Syofyanzuhad\FilamentZktecoAdms\FilamentZktecoAdmsPlugin;
 
 class DeviceResource extends Resource
 {

@@ -8,9 +8,8 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Syofyanzuhad\FilamentZktecoAdms\Filament\Resources\DeviceCommandResource\Pages;
-use Syofyanzuhad\FilamentZktecoAdms\Models\DeviceCommand;
-
 use Syofyanzuhad\FilamentZktecoAdms\FilamentZktecoAdmsPlugin;
+use Syofyanzuhad\FilamentZktecoAdms\Models\DeviceCommand;
 
 class DeviceCommandResource extends Resource
 {

@@ -8,9 +8,8 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Syofyanzuhad\FilamentZktecoAdms\Filament\Resources\AttendanceLogResource\Pages;
-use Syofyanzuhad\FilamentZktecoAdms\Models\AttendanceLog;
-
 use Syofyanzuhad\FilamentZktecoAdms\FilamentZktecoAdmsPlugin;
+use Syofyanzuhad\FilamentZktecoAdms\Models\AttendanceLog;
 
 class AttendanceLogResource extends Resource
 {

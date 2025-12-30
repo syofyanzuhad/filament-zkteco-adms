@@ -8,9 +8,8 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Syofyanzuhad\FilamentZktecoAdms\Filament\Resources\ZktecoUserResource\Pages;
-use Syofyanzuhad\FilamentZktecoAdms\Models\ZktecoUser;
-
 use Syofyanzuhad\FilamentZktecoAdms\FilamentZktecoAdmsPlugin;
+use Syofyanzuhad\FilamentZktecoAdms\Models\ZktecoUser;
 
 class ZktecoUserResource extends Resource
 {

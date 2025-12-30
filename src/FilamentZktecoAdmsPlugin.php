@@ -95,7 +95,6 @@ class FilamentZktecoAdmsPlugin implements Plugin
         return $this;
     }
 
-
     public function navigationGroup(?string $group): static
     {
         $this->navigationGroup = $group;
