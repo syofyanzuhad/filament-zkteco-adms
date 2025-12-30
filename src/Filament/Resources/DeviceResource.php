@@ -2,6 +2,11 @@
 
 namespace Syofyanzuhad\FilamentZktecoAdms\Filament\Resources;
 
+use Filament\Actions\Action;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
 use Filament\Forms;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -93,23 +98,23 @@ class DeviceResource extends Resource
                     ]),
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\Action::make('getInfo')
+                ViewAction::make(),
+                EditAction::make(),
+                Action::make('getInfo')
                     ->icon('heroicon-o-information-circle')
                     ->color('info')
                     ->requiresConfirmation()
                     ->modalHeading('Get Device Info')
                     ->modalDescription('Send a command to get device information.')
                     ->action(fn (Device $record) => app(DeviceCommandBuilder::class)->info($record)),
-                Tables\Actions\Action::make('reboot')
+                Action::make('reboot')
                     ->icon('heroicon-o-arrow-path')
                     ->color('warning')
                     ->requiresConfirmation()
                     ->modalHeading('Reboot Device')
                     ->modalDescription('Are you sure you want to reboot this device?')
                     ->action(fn (Device $record) => app(DeviceCommandBuilder::class)->reboot($record)),
-                Tables\Actions\Action::make('clearLogs')
+                Action::make('clearLogs')
                     ->icon('heroicon-o-trash')
                     ->color('danger')
                     ->requiresConfirmation()
@@ -118,8 +123,8 @@ class DeviceResource extends Resource
                     ->action(fn (Device $record) => app(DeviceCommandBuilder::class)->clearAttendanceLogs($record)),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }

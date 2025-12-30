@@ -2,6 +2,11 @@
 
 namespace Syofyanzuhad\FilamentZktecoAdms\Filament\Resources;
 
+use Filament\Actions\Action;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\ViewAction;
 use Filament\Forms;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -110,17 +115,17 @@ class DeviceCommandResource extends Resource
                     ]),
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\Action::make('retry')
+                ViewAction::make(),
+                Action::make('retry')
                     ->icon('heroicon-o-arrow-path')
                     ->color('warning')
                     ->visible(fn (DeviceCommand $record) => in_array($record->status, ['failed', 'sent']))
                     ->action(fn (DeviceCommand $record) => $record->retry()),
-                Tables\Actions\DeleteAction::make(),
+                DeleteAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
