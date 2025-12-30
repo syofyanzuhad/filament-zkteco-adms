@@ -1,0 +1,133 @@
+<?php
+
+namespace Syofyanzuhad\FilamentZktecoAdms\Filament\Resources;
+
+use Filament\Forms;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
+use Syofyanzuhad\FilamentZktecoAdms\Filament\Resources\AttendanceLogResource\Pages;
+use Syofyanzuhad\FilamentZktecoAdms\Models\AttendanceLog;
+
+class AttendanceLogResource extends Resource
+{
+    protected static ?string $model = AttendanceLog::class;
+
+    protected static ?string $navigationIcon = 'heroicon-o-clock';
+
+    protected static ?int $navigationSort = 2;
+
+    public static function getNavigationGroup(): ?string
+    {
+        return config('zkteco-adms.filament.navigation_group', 'ZKTeco ADMS');
+    }
+
+    public static function form(Form $form): Form
+    {
+        return $form->schema([
+            Forms\Components\Section::make('Attendance Details')
+                ->schema([
+                    Forms\Components\Select::make('device_id')
+                        ->relationship('device', 'name')
+                        ->required(),
+                    Forms\Components\TextInput::make('pin')
+                        ->required(),
+                    Forms\Components\DateTimePicker::make('punched_at')
+                        ->required(),
+                    Forms\Components\Select::make('status')
+                        ->options([
+                            0 => 'Check In',
+                            1 => 'Check Out',
+                            2 => 'Break Out',
+                            3 => 'Break In',
+                            4 => 'OT In',
+                            5 => 'OT Out',
+                        ]),
+                    Forms\Components\Select::make('verify_type')
+                        ->options([
+                            0 => 'Password',
+                            1 => 'Fingerprint',
+                            2 => 'Card',
+                            15 => 'Face',
+                        ]),
+                ])
+                ->columns(2),
+        ]);
+    }
+
+    public static function table(Table $table): Table
+    {
+        return $table
+            ->columns([
+                Tables\Columns\TextColumn::make('device.name')
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('pin')
+                    ->label('User PIN')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('zktecoUser.name')
+                    ->label('User Name')
+                    ->placeholder('Unknown'),
+                Tables\Columns\TextColumn::make('punched_at')
+                    ->dateTime()
+                    ->sortable(),
+                Tables\Columns\BadgeColumn::make('status')
+                    ->formatStateUsing(fn ($state) => match ($state) {
+                        0 => 'Check In',
+                        1 => 'Check Out',
+                        2 => 'Break Out',
+                        3 => 'Break In',
+                        4 => 'OT In',
+                        5 => 'OT Out',
+                        default => 'Unknown',
+                    })
+                    ->colors([
+                        'success' => 0,
+                        'danger' => 1,
+                        'warning' => fn ($state) => in_array($state, [2, 3, 4, 5]),
+                    ]),
+                Tables\Columns\TextColumn::make('verify_type_label')
+                    ->label('Verify Type'),
+            ])
+            ->defaultSort('punched_at', 'desc')
+            ->filters([
+                Tables\Filters\SelectFilter::make('device')
+                    ->relationship('device', 'name'),
+                Tables\Filters\SelectFilter::make('status')
+                    ->options([
+                        0 => 'Check In',
+                        1 => 'Check Out',
+                        2 => 'Break Out',
+                        3 => 'Break In',
+                        4 => 'OT In',
+                        5 => 'OT Out',
+                    ]),
+                Tables\Filters\Filter::make('punched_at')
+                    ->form([
+                        Forms\Components\DatePicker::make('from'),
+                        Forms\Components\DatePicker::make('until'),
+                    ])
+                    ->query(function ($query, array $data) {
+                        return $query
+                            ->when($data['from'], fn ($q, $date) => $q->whereDate('punched_at', '>=', $date))
+                            ->when($data['until'], fn ($q, $date) => $q->whereDate('punched_at', '<=', $date));
+                    }),
+            ])
+            ->actions([
+                Tables\Actions\ViewAction::make(),
+            ])
+            ->bulkActions([
+                Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\DeleteBulkAction::make(),
+                ]),
+            ]);
+    }
+
+    public static function getPages(): array
+    {
+        return [
+            'index' => Pages\ListAttendanceLogs::route('/'),
+            'view' => Pages\ViewAttendanceLog::route('/{record}'),
+        ];
+    }
+}
