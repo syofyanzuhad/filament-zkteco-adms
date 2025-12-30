@@ -116,11 +116,7 @@ class FilamentZktecoAdmsServiceProvider extends PackageServiceProvider
      */
     protected function getAssets(): array
     {
-        return [
-            // AlpineComponent::make('filament-zkteco-adms', __DIR__ . '/../resources/dist/components/filament-zkteco-adms.js'),
-            Css::make('filament-zkteco-adms-styles', __DIR__ . '/../resources/dist/filament-zkteco-adms.css'),
-            Js::make('filament-zkteco-adms-scripts', __DIR__ . '/../resources/dist/filament-zkteco-adms.js'),
-        ];
+        return [];
     }
 
     /**
