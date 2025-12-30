@@ -1,29 +1,27 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "syofyanzuhad/filament-zkteco-adms",
+    "description": "Package to receive data from zkteco device through adms",
     "keywords": [
-        ":vendor_name",
+        "syofyanzuhad",
         "laravel",
-        ":package_slug"
+        "filament-zkteco-adms"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/syofyanzuhad/filament-zkteco-adms",
     "support": {
-        "issues": "https://github.com/:vendor_slug/:package_slug/issues",
-        "source": "https://github.com/:vendor_slug/:package_slug"
+        "issues": "https://github.com/syofyanzuhad/filament-zkteco-adms/issues",
+        "source": "https://github.com/syofyanzuhad/filament-zkteco-adms"
     },
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Syofyan Zuhad",
+            "email": "mail@syofyanzuhad.dev",
             "role": "Developer"
         }
     ],
     "require": {
         "php": "^8.1",
         "filament/filament": "^3.0",
-        "filament/forms": "^3.0",
-        "filament/tables": "^3.0",
         "spatie/laravel-package-tools": "^1.15.0"
     },
     "require-dev": {
@@ -41,13 +39,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src/",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories/"
+            "Syofyanzuhad\\FilamentZktecoAdms\\": "src/",
+            "Syofyanzuhad\\FilamentZktecoAdms\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests/"
+            "Syofyanzuhad\\FilamentZktecoAdms\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -67,10 +65,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Syofyanzuhad\\FilamentZktecoAdms\\FilamentZktecoAdmsServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "FilamentZktecoAdms": "Syofyanzuhad\\FilamentZktecoAdms\\Facades\\FilamentZktecoAdms"
             }
         }
     },
