@@ -15,7 +15,7 @@ class ZktecoUserResource extends Resource
 {
     protected static ?string $model = ZktecoUser::class;
 
-    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-users';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-users';
 
     protected static ?int $navigationSort = 3;
 

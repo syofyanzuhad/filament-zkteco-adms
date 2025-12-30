@@ -15,7 +15,7 @@ class AttendanceLogResource extends Resource
 {
     protected static ?string $model = AttendanceLog::class;
 
-    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-clock';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-clock';
 
     protected static ?int $navigationSort = 2;
 

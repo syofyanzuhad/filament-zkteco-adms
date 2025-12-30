@@ -15,7 +15,7 @@ class DeviceCommandResource extends Resource
 {
     protected static ?string $model = DeviceCommand::class;
 
-    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-command-line';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-command-line';
 
     protected static ?int $navigationSort = 4;
 
