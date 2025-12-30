@@ -9,7 +9,8 @@ use Syofyanzuhad\FilamentZktecoAdms\Models\Device;
 
 class AttendanceReceived
 {
-    use Dispatchable, SerializesModels;
+    use Dispatchable;
+    use SerializesModels;
 
     public function __construct(
         public AttendanceLog $attendanceLog,

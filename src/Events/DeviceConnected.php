@@ -8,7 +8,8 @@ use Syofyanzuhad\FilamentZktecoAdms\Models\Device;
 
 class DeviceConnected
 {
-    use Dispatchable, SerializesModels;
+    use Dispatchable;
+    use SerializesModels;
 
     public function __construct(
         public Device $device

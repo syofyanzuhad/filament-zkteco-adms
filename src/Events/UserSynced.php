@@ -9,7 +9,8 @@ use Syofyanzuhad\FilamentZktecoAdms\Models\ZktecoUser;
 
 class UserSynced
 {
-    use Dispatchable, SerializesModels;
+    use Dispatchable;
+    use SerializesModels;
 
     public function __construct(
         public ZktecoUser $user,

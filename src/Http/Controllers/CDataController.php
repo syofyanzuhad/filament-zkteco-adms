@@ -73,12 +73,15 @@ class CDataController extends Controller
         switch (strtoupper($table)) {
             case 'ATTLOG':
                 $this->processAttendanceLogs($device, $body, $stamp);
+
                 break;
             case 'OPERLOG':
                 $this->processOperationLogs($device, $body, $stamp);
+
                 break;
             case 'OPTIONS':
                 $this->processOptions($device, $body);
+
                 break;
         }
 
