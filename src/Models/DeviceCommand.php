@@ -35,7 +35,7 @@ class DeviceCommand extends Model
 
     public function device(): BelongsTo
     {
-        return $this->belongsTo(config('zkteco-adms.models.device'));
+        return $this->belongsTo(config('zkteco-adms.models.device', Device::class));
     }
 
     public function markAsSent(): void

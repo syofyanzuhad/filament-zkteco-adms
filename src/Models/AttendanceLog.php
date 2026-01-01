@@ -36,12 +36,12 @@ class AttendanceLog extends Model
 
     public function device(): BelongsTo
     {
-        return $this->belongsTo(config('zkteco-adms.models.device'));
+        return $this->belongsTo(config('zkteco-adms.models.device', Device::class));
     }
 
     public function zktecoUser(): BelongsTo
     {
-        return $this->belongsTo(config('zkteco-adms.models.user'), 'pin', 'pin');
+        return $this->belongsTo(config('zkteco-adms.models.user', ZktecoUser::class), 'pin', 'pin');
     }
 
     public function getStatusLabelAttribute(): string

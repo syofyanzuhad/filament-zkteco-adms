@@ -41,12 +41,12 @@ class Device extends Model
 
     public function attendanceLogs(): HasMany
     {
-        return $this->hasMany(config('zkteco-adms.models.attendance_log'));
+        return $this->hasMany(config('zkteco-adms.models.attendance_log', AttendanceLog::class));
     }
 
     public function commands(): HasMany
     {
-        return $this->hasMany(config('zkteco-adms.models.device_command'));
+        return $this->hasMany(config('zkteco-adms.models.device_command', DeviceCommand::class));
     }
 
     public function pendingCommands(): HasMany

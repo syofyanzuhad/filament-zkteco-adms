@@ -37,7 +37,7 @@ class ZktecoUser extends Model
 
     public function attendanceLogs(): HasMany
     {
-        return $this->hasMany(config('zkteco-adms.models.attendance_log'), 'pin', 'pin');
+        return $this->hasMany(config('zkteco-adms.models.attendance_log', AttendanceLog::class), 'pin', 'pin');
     }
 
     public function getPrivilegeLabelAttribute(): string
