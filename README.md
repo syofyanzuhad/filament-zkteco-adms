@@ -240,6 +240,14 @@ You can extend the default models by updating the config:
 composer test
 ```
 
+## Screenshots
+
+<img width="2880" height="1902" alt="filament-zkteco test_admin_devices" src="https://github.com/user-attachments/assets/f79624b0-6394-46d7-824f-61918fee8c06" />
+<img width="2880" height="1902" alt="filament-zkteco test_admin_attendance-logs" src="https://github.com/user-attachments/assets/6e790a2f-09ca-4bb7-b5f4-783b9519380c" />
+<img width="2880" height="1902" alt="filament-zkteco test_admin_zkteco-users" src="https://github.com/user-attachments/assets/43def453-a0a1-411a-b6fe-db6cb23b4bad" />
+<img width="2880" height="1902" alt="filament-zkteco test_admin_device-commands" src="https://github.com/user-attachments/assets/4a729d60-247a-4add-9869-a75561920b46" />
+
+
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
