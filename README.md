@@ -7,9 +7,15 @@
 
 A Filament plugin to receive attendance data from ZKTeco devices via ADMS (Automatic Data Master Server) protocol. This package provides ADMS endpoints, database storage, and a complete Filament admin interface for managing devices and attendance logs.
 
+## Version Compatibility
+
+| Package Version | Filament | Laravel | PHP |
+|-----------------|----------|---------|-----|
+| `^2.0` | `^4.0` | `^11.0 \| ^12.0` | `^8.2` |
+| `^1.0` | `^3.0` | `^10.0 \| ^11.0` | `^8.2` |
+
 ## Features
 
-- **Filament 3.x and 4.x support**
 - ADMS protocol endpoints (`/iclock/cdata`, `/iclock/getrequest`, `/iclock/devicecmd`)
 - Automatic device registration
 - Attendance log storage with user sync
@@ -18,18 +24,18 @@ A Filament plugin to receive attendance data from ZKTeco devices via ADMS (Autom
 - Configurable table prefixes and route settings
 - Event dispatching for real-time integrations
 
-## Requirements
-
-- PHP 8.2+
-- Laravel 10.x, 11.x or 12.x
-- Filament 3.x or 4.x
-
 ## Installation
 
-Install the package via composer:
+**For Filament 4.x:**
 
 ```bash
-composer require syofyanzuhad/filament-zkteco-adms
+composer require syofyanzuhad/filament-zkteco-adms:^2.0
+```
+
+**For Filament 3.x:**
+
+```bash
+composer require syofyanzuhad/filament-zkteco-adms:^1.0
 ```
 
 Publish and run the migrations:
