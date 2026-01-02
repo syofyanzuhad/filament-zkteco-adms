@@ -7,8 +7,10 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
-use Filament\Forms;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -35,22 +37,22 @@ class DeviceResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema->components([
-            Forms\Components\Section::make('Device Information')
+            Section::make('Device Information')
                 ->schema([
-                    Forms\Components\TextInput::make('serial_number')
+                    TextInput::make('serial_number')
                         ->required()
                         ->unique(ignoreRecord: true)
                         ->maxLength(100),
-                    Forms\Components\TextInput::make('name')
+                    TextInput::make('name')
                         ->maxLength(255),
-                    Forms\Components\TextInput::make('ip_address')
+                    TextInput::make('ip_address')
                         ->label('IP Address'),
-                    Forms\Components\TextInput::make('model'),
-                    Forms\Components\TextInput::make('firmware_version')
+                    TextInput::make('model'),
+                    TextInput::make('firmware_version')
                         ->disabled(),
-                    Forms\Components\TextInput::make('push_version')
+                    TextInput::make('push_version')
                         ->disabled(),
-                    Forms\Components\Select::make('status')
+                    Select::make('status')
                         ->options([
                             'online' => 'Online',
                             'offline' => 'Offline',
@@ -97,7 +99,7 @@ class DeviceResource extends Resource
                         'unknown' => 'Unknown',
                     ]),
             ])
-            ->actions([
+            ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),
                 Action::make('getInfo')
@@ -122,7 +124,7 @@ class DeviceResource extends Resource
                     ->modalDescription('Are you sure you want to clear all attendance logs on this device?')
                     ->action(fn (Device $record) => app(DeviceCommandBuilder::class)->clearAttendanceLogs($record)),
             ])
-            ->bulkActions([
+            ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                 ]),

@@ -75,14 +75,14 @@ class CommandsRelationManager extends RelationManager
             ->headerActions([
                 CreateAction::make(),
             ])
-            ->actions([
+            ->recordActions([
                 ViewAction::make(),
                 Action::make('retry')
                     ->icon('heroicon-o-arrow-path')
                     ->visible(fn (DeviceCommand $record) => in_array($record->status, ['failed', 'sent']))
                     ->action(fn (DeviceCommand $record) => $record->retry()),
             ])
-            ->bulkActions([
+            ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                 ]),

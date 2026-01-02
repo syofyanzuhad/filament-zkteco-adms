@@ -7,8 +7,11 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\ViewAction;
-use Filament\Forms;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -33,13 +36,13 @@ class DeviceCommandResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema->components([
-            Forms\Components\Section::make('Command Details')
+            Section::make('Command Details')
                 ->schema([
-                    Forms\Components\Select::make('device_id')
+                    Select::make('device_id')
                         ->relationship('device', 'name')
                         ->required()
                         ->searchable(),
-                    Forms\Components\Select::make('command_type')
+                    Select::make('command_type')
                         ->options([
                             'INFO' => 'Get Device Info',
                             'REBOOT' => 'Reboot Device',
@@ -49,10 +52,10 @@ class DeviceCommandResource extends Resource
                         ])
                         ->required()
                         ->live(),
-                    Forms\Components\Textarea::make('command_content')
+                    Textarea::make('command_content')
                         ->required()
                         ->rows(3),
-                    Forms\Components\Select::make('status')
+                    Select::make('status')
                         ->options([
                             'pending' => 'Pending',
                             'sent' => 'Sent',
@@ -114,7 +117,7 @@ class DeviceCommandResource extends Resource
                         'CHECK' => 'Check Connection',
                     ]),
             ])
-            ->actions([
+            ->recordActions([
                 ViewAction::make(),
                 Action::make('retry')
                     ->icon('heroicon-o-arrow-path')
@@ -123,7 +126,7 @@ class DeviceCommandResource extends Resource
                     ->action(fn (DeviceCommand $record) => $record->retry()),
                 DeleteAction::make(),
             ])
-            ->bulkActions([
+            ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                 ]),

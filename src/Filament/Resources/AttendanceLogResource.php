@@ -5,8 +5,12 @@ namespace Syofyanzuhad\FilamentZktecoAdms\Filament\Resources;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\ViewAction;
-use Filament\Forms;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -31,16 +35,16 @@ class AttendanceLogResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema->components([
-            Forms\Components\Section::make('Attendance Details')
+            Section::make('Attendance Details')
                 ->schema([
-                    Forms\Components\Select::make('device_id')
+                    Select::make('device_id')
                         ->relationship('device', 'name')
                         ->required(),
-                    Forms\Components\TextInput::make('pin')
+                    TextInput::make('pin')
                         ->required(),
-                    Forms\Components\DateTimePicker::make('punched_at')
+                    DateTimePicker::make('punched_at')
                         ->required(),
-                    Forms\Components\Select::make('status')
+                    Select::make('status')
                         ->options([
                             0 => 'Check In',
                             1 => 'Check Out',
@@ -49,7 +53,7 @@ class AttendanceLogResource extends Resource
                             4 => 'OT In',
                             5 => 'OT Out',
                         ]),
-                    Forms\Components\Select::make('verify_type')
+                    Select::make('verify_type')
                         ->options([
                             0 => 'Password',
                             1 => 'Fingerprint',
@@ -110,9 +114,9 @@ class AttendanceLogResource extends Resource
                         5 => 'OT Out',
                     ]),
                 Tables\Filters\Filter::make('punched_at')
-                    ->form([
-                        Forms\Components\DatePicker::make('from'),
-                        Forms\Components\DatePicker::make('until'),
+                    ->schema([
+                        DatePicker::make('from'),
+                        DatePicker::make('until'),
                     ])
                     ->query(function ($query, array $data) {
                         return $query
@@ -120,10 +124,10 @@ class AttendanceLogResource extends Resource
                             ->when($data['until'], fn ($q, $date) => $q->whereDate('punched_at', '<=', $date));
                     }),
             ])
-            ->actions([
+            ->recordActions([
                 ViewAction::make(),
             ])
-            ->bulkActions([
+            ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                 ]),

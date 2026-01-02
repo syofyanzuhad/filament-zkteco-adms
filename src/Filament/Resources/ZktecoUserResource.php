@@ -6,8 +6,11 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
-use Filament\Forms;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Resources\Resource;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -36,22 +39,22 @@ class ZktecoUserResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema->components([
-            Forms\Components\Section::make('User Information')
+            Section::make('User Information')
                 ->schema([
-                    Forms\Components\TextInput::make('pin')
+                    TextInput::make('pin')
                         ->required()
                         ->unique(ignoreRecord: true),
-                    Forms\Components\TextInput::make('name'),
-                    Forms\Components\TextInput::make('card_number')
+                    TextInput::make('name'),
+                    TextInput::make('card_number')
                         ->label('Card Number'),
-                    Forms\Components\Select::make('privilege')
+                    Select::make('privilege')
                         ->options([
                             0 => 'User',
                             14 => 'Admin',
                         ])
                         ->default(0),
-                    Forms\Components\TextInput::make('group'),
-                    Forms\Components\Toggle::make('is_enabled')
+                    TextInput::make('group'),
+                    Toggle::make('is_enabled')
                         ->default(true),
                 ])
                 ->columns(2)
@@ -88,11 +91,11 @@ class ZktecoUserResource extends Resource
                     ]),
                 Tables\Filters\TernaryFilter::make('is_enabled'),
             ])
-            ->actions([
+            ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),
             ])
-            ->bulkActions([
+            ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                 ]),
