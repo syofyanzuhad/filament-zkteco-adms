@@ -2,6 +2,14 @@
 
 All notable changes to `filament-zkteco-adms` will be documented in this file.
 
+## v2.0.2 - 2026-01-03
+
+### Fixed
+
+- Add remaining default fallback values to all config calls (response, device, and events settings) to prevent errors when package config is not published
+
+**Full Changelog**: https://github.com/syofyanzuhad/filament-zkteco-adms/compare/v2.0.1...v2.0.2
+
 ## v2.0.0 - Filament 4 Support - 2026-01-03
 
 ### What's New
