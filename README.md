@@ -247,12 +247,15 @@ composer test
 ```
 
 ## Screenshots
+![WhatsApp Image 2026-01-03 at 18 04 01 (1)](https://github.com/user-attachments/assets/487ebac6-46a9-4200-8a3c-12e4b2fd7952)
+![WhatsApp Image 2026-01-03 at 18 04 01 (4)](https://github.com/user-attachments/assets/4e7e142d-e833-47d5-a01b-d98d3e59ead7)
+![WhatsApp Image 2026-01-03 at 18 04 01](https://github.com/user-attachments/assets/f605fef0-b9d6-4f77-a4cf-8e904c28d943)
 
-<img width="2880" height="1902" alt="filament-zkteco test_admin_devices" src="https://github.com/user-attachments/assets/f79624b0-6394-46d7-824f-61918fee8c06" />
-<img width="2880" height="1902" alt="filament-zkteco test_admin_attendance-logs" src="https://github.com/user-attachments/assets/6e790a2f-09ca-4bb7-b5f4-783b9519380c" />
-<img width="2880" height="1902" alt="filament-zkteco test_admin_zkteco-users" src="https://github.com/user-attachments/assets/43def453-a0a1-411a-b6fe-db6cb23b4bad" />
-<img width="2880" height="1902" alt="filament-zkteco test_admin_device-commands" src="https://github.com/user-attachments/assets/4a729d60-247a-4add-9869-a75561920b46" />
-
+<img width="2880" height="2162" alt="zkteco syofyanzuhad dev_admin_devices_1 (1)" src="https://github.com/user-attachments/assets/49da0603-f72e-4545-8472-b0692eed8592" />
+<img width="2880" height="2080" alt="zkteco syofyanzuhad dev_admin_devices_1" src="https://github.com/user-attachments/assets/fe06a306-16b6-41e6-9be2-482d311af754" />
+<img width="2880" height="1902" alt="zkteco syofyanzuhad dev_admin_attendance-logs" src="https://github.com/user-attachments/assets/a8822712-b47d-4d5b-83d0-7188fabd87ce" />
+<img width="2880" height="1902" alt="zkteco syofyanzuhad dev_admin_zkteco-users" src="https://github.com/user-attachments/assets/55a03e81-d507-411e-be3c-ec8e2856c26e" />
+<img width="2880" height="1902" alt="zkteco syofyanzuhad dev_admin_device-commands" src="https://github.com/user-attachments/assets/dfbf6baf-f0b2-46fa-a112-91a447fee483" />
 
 ## Changelog
 
