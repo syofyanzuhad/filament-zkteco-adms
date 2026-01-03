@@ -67,7 +67,7 @@ class DeviceCommandBuilder
 
     protected function createCommand(Device $device, string $type, string $content): DeviceCommand
     {
-        $modelClass = config('zkteco-adms.models.device_command');
+        $modelClass = config('zkteco-adms.models.device_command', DeviceCommand::class);
 
         return $modelClass::create([
             'device_id' => $device->id,

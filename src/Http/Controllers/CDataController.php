@@ -60,7 +60,7 @@ class CDataController extends Controller
             'firmware_version' => $request->query('FWVersion'),
         ]);
 
-        if (config('zkteco-adms.events.dispatch_device_connected')) {
+        if (config('zkteco-adms.events.dispatch_device_connected', true)) {
             event(new DeviceConnected($device));
         }
 
@@ -108,7 +108,7 @@ class CDataController extends Controller
                 'raw_data' => ['raw' => $log['raw']],
             ]);
 
-            if (config('zkteco-adms.events.dispatch_attendance_received')) {
+            if (config('zkteco-adms.events.dispatch_attendance_received', true)) {
                 event(new AttendanceReceived($record, $device));
             }
         }
@@ -138,7 +138,7 @@ class CDataController extends Controller
                     ]
                 );
 
-                if (config('zkteco-adms.events.dispatch_user_synced')) {
+                if (config('zkteco-adms.events.dispatch_user_synced', true)) {
                     event(new UserSynced($user, $device));
                 }
             }
@@ -192,7 +192,7 @@ class CDataController extends Controller
 
         $device = $modelClass::where('serial_number', $serialNumber)->first();
 
-        if (! $device && config('zkteco-adms.device.auto_register')) {
+        if (! $device && config('zkteco-adms.device.auto_register', true)) {
             $device = $modelClass::create([
                 'serial_number' => $serialNumber,
                 'name' => "Device {$serialNumber}",

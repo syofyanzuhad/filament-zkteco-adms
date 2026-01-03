@@ -20,7 +20,12 @@ class AdmsResponseBuilder
 
     public function deviceOptions(Device $device): Response
     {
-        $config = config('zkteco-adms.response');
+        $config = config('zkteco-adms.response', [
+            'error_delay' => 60,
+            'delay' => 30,
+            'realtime' => 1,
+            'encrypt' => 0,
+        ]);
 
         $options = [
             "GET OPTION FROM: {$device->serial_number}",
@@ -28,8 +33,8 @@ class AdmsResponseBuilder
             "OpStamp={$device->op_stamp}",
             "ErrorDelay={$config['error_delay']}",
             "Delay={$config['delay']}",
-            'TransTimes=' . config('zkteco-adms.device.default_trans_times'),
-            'TransInterval=' . config('zkteco-adms.device.default_trans_interval'),
+            'TransTimes=' . config('zkteco-adms.device.default_trans_times', 10),
+            'TransInterval=' . config('zkteco-adms.device.default_trans_interval', 1),
             'TransFlag=TransData AttLog OpLog AttPhoto',
             "Realtime={$config['realtime']}",
             "Encrypt={$config['encrypt']}",

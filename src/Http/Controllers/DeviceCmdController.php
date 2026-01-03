@@ -5,6 +5,8 @@ namespace Syofyanzuhad\FilamentZktecoAdms\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Syofyanzuhad\FilamentZktecoAdms\Models\Device;
+use Syofyanzuhad\FilamentZktecoAdms\Models\DeviceCommand;
 use Syofyanzuhad\FilamentZktecoAdms\Services\AdmsResponseBuilder;
 
 class DeviceCmdController extends Controller
@@ -23,7 +25,7 @@ class DeviceCmdController extends Controller
             return $this->responseBuilder->error();
         }
 
-        $deviceModel = config('zkteco-adms.models.device');
+        $deviceModel = config('zkteco-adms.models.device', Device::class);
         $device = $deviceModel::where('serial_number', $serialNumber)->first();
 
         if ($device) {
@@ -32,7 +34,7 @@ class DeviceCmdController extends Controller
 
         // If command ID provided, acknowledge the command
         if ($commandId) {
-            $commandModel = config('zkteco-adms.models.device_command');
+            $commandModel = config('zkteco-adms.models.device_command', DeviceCommand::class);
             $command = $commandModel::find($commandId);
 
             if ($command) {
