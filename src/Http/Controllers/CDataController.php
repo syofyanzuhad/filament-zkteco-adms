@@ -8,7 +8,9 @@ use Illuminate\Routing\Controller;
 use Syofyanzuhad\FilamentZktecoAdms\Events\AttendanceReceived;
 use Syofyanzuhad\FilamentZktecoAdms\Events\DeviceConnected;
 use Syofyanzuhad\FilamentZktecoAdms\Events\UserSynced;
+use Syofyanzuhad\FilamentZktecoAdms\Models\AttendanceLog;
 use Syofyanzuhad\FilamentZktecoAdms\Models\Device;
+use Syofyanzuhad\FilamentZktecoAdms\Models\ZktecoUser;
 use Syofyanzuhad\FilamentZktecoAdms\Services\AdmsRequestParser;
 use Syofyanzuhad\FilamentZktecoAdms\Services\AdmsResponseBuilder;
 
@@ -91,7 +93,7 @@ class CDataController extends Controller
     protected function processAttendanceLogs(Device $device, string $body, ?string $stamp): void
     {
         $logs = $this->parser->parseAttendanceLogs($body);
-        $modelClass = config('zkteco-adms.models.attendance_log');
+        $modelClass = config('zkteco-adms.models.attendance_log', AttendanceLog::class);
 
         foreach ($logs as $log) {
             $record = $modelClass::create([
@@ -121,7 +123,7 @@ class CDataController extends Controller
     protected function processOperationLogs(Device $device, string $body, ?string $stamp): void
     {
         $operations = $this->parser->parseOperationLogs($body);
-        $userModel = config('zkteco-adms.models.user');
+        $userModel = config('zkteco-adms.models.user', ZktecoUser::class);
 
         foreach ($operations as $op) {
             if ($op['type'] === 'user' && isset($op['pin'])) {
@@ -186,7 +188,7 @@ class CDataController extends Controller
 
     protected function findOrCreateDevice(string $serialNumber, Request $request): ?Device
     {
-        $modelClass = config('zkteco-adms.models.device');
+        $modelClass = config('zkteco-adms.models.device', Device::class);
 
         $device = $modelClass::where('serial_number', $serialNumber)->first();
 
