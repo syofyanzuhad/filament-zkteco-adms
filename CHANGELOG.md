@@ -2,6 +2,14 @@
 
 All notable changes to `filament-zkteco-adms` will be documented in this file.
 
+## v1.2.8 - 2026-01-03
+
+### Fixed
+
+- Add default fallback values to model config calls to fix "Class name must be a valid object or a string" error when config is not published
+
+**Full Changelog**: https://github.com/syofyanzuhad/filament-zkteco-adms/compare/v1.2.7...v1.2.8
+
 ## v2.0.1 - 2026-01-03
 
 ### Fixed
