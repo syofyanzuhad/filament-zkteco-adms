@@ -5,6 +5,7 @@ namespace Syofyanzuhad\FilamentZktecoAdms\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Syofyanzuhad\FilamentZktecoAdms\Models\Device;
 use Syofyanzuhad\FilamentZktecoAdms\Services\AdmsResponseBuilder;
 
 class GetRequestController extends Controller
@@ -21,7 +22,7 @@ class GetRequestController extends Controller
             return $this->responseBuilder->error();
         }
 
-        $deviceModel = config('zkteco-adms.models.device');
+        $deviceModel = config('zkteco-adms.models.device', Device::class);
         $device = $deviceModel::where('serial_number', $serialNumber)->first();
 
         if (! $device) {
