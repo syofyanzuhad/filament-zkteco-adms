@@ -2,6 +2,14 @@
 
 All notable changes to `filament-zkteco-adms` will be documented in this file.
 
+## v1.2.9 - 2026-01-03
+
+### Fixed
+
+- Add remaining default fallback values to all config calls (response, device, and events settings) to prevent errors when package config is not published
+
+**Full Changelog**: https://github.com/syofyanzuhad/filament-zkteco-adms/compare/v1.2.8...v1.2.9
+
 ## v2.0.2 - 2026-01-03
 
 ### Fixed
@@ -29,6 +37,7 @@ If you're upgrading from v1.x (Filament 3), update your composer requirement:
 ```bash
 composer require syofyanzuhad/filament-zkteco-adms:^2.0
 
+
 ```
 #### Staying on Filament 3
 
@@ -36,6 +45,7 @@ If you need to stay on Filament 3.x, use the 1.x branch:
 
 ```bash
 composer require syofyanzuhad/filament-zkteco-adms:^1.0
+
 
 ```
 #### Version Compatibility
